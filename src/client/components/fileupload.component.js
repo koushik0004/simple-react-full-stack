@@ -44,6 +44,7 @@ class FileUploadComponent extends React.Component {
       <form name="fileuploadtest" encType="multipart/form-data" method="POST">
         <input type="file" name="sampleFile" onChange={this.handleDataChange} />
         <button type="submit" name="submitButton" onClick={this.uploadFile}>Upload File</button>
+        <div> {Math.round(this.state.loaded, 2)} %</div>
       </form>
     );
   }

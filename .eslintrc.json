@@ -10,6 +10,7 @@
     "no-console": "off",
     "comma-dangle": "off",
     "react/jsx-filename-extension": "off",
-    "react/destructuring-assignment": ["off", "always"]
+    "react/destructuring-assignment": ["off", "always"],
+    "react/jsx-one-expression-per-line": "off"
   }
 }
