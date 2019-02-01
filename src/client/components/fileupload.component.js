@@ -14,16 +14,18 @@ class FileUploadComponent extends React.Component {
     evt.preventDefault();
     const data = new FormData();
     const endpoint = '/api/upload';
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' },
+      onUploadProgress: (ProgressEvent) => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+        });
+      }
+    };
     data.append('file', this.state.sampleFile, this.state.sampleFile.name);
     console.log(this.state, data);
     axios
-      .post(endpoint, data, {
-        onUploadProgress: (ProgressEvent) => {
-          this.setState({
-            loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
-          });
-        },
-      })
+      .post(endpoint, data, config)
       .then((res) => {
         console.log(res);
       });
@@ -41,7 +43,7 @@ class FileUploadComponent extends React.Component {
 
   render() {
     return (
-      <form name="fileuploadtest" encType="multipart/form-data" method="POST">
+      <form name="fileuploadtest" method="POST">
         <input type="file" name="sampleFile" onChange={this.handleDataChange} />
         <button type="submit" name="submitButton" onClick={this.uploadFile}>Upload File</button>
         <div> {Math.round(this.state.loaded, 2)} %</div>
