@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
 
+import FileUploadComponent from './components/fileupload.component';
+
 export default class App extends Component {
   state = { username: null };
 
@@ -17,6 +19,7 @@ export default class App extends Component {
       <div>
         {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
         <img src={ReactImage} alt="react" />
+        <FileUploadComponent />
       </div>
     );
   }
